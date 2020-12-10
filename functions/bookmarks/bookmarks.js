@@ -2,37 +2,26 @@ const { ApolloServer, gql } = require('apollo-server-lambda')
 
 const typeDefs = gql`
   type Query {
-    hello: String
-    allAuthors: [Author!]
-    author(id: Int!): Author
-    authorByName(name: String!): Author
+    bookmark: [Bookmark!]
   }
-  type Author {
+  type Bookmark {
     id: ID!
-    name: String!
-    married: Boolean!
+    url: String!
+    desc: String!
   }
 `
 
 const authors = [
-  { id: 1, name: 'Terry Pratchett', married: false },
-  { id: 2, name: 'Stephen King', married: true },
-  { id: 3, name: 'JK Rowling', married: false },
+  { id: 1, url: 'https://github.com/panacloud-modern-global-apps/jamstack-serverless', desc: 'This is a repo of jamstack-serverless' },
+  { id: 2, url: 'https://github.com/panacloud-modern-global-apps/full-stack-serverless-cdk', desc: 'This is a repo of fullstack-serverless-cdk' },
+  { id: 3, url: 'https://github.com/HamzaAhmedSheikh/project-12D_Bookmarking-Application', desc: 'This is a repo of Bookmarking-Application' },
 ]
 
 const resolvers = {
-  Query: {
-    hello: () => {
-      return 'Hello, world!'
-    },
-    allAuthors: () => {
+  Query: {    
+    bookmark: (root, args, context) => {
       return authors
-    },
-    author: () => {},
-    authorByName: (root, args) => {
-      console.log('hihhihi', args.name)
-      return authors.find((author) => author.name === args.name) || 'NOTFOUND'
-    },
+    },        
   },
 }
 
