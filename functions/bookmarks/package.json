@@ -2,7 +2,7 @@
   "name": "apollo-graphql",
   "version": "1.0.0",
   "description": "netlify functions:create - set up for apollo graphql",
-  "main": "apollo-graphql.js",
+  "main": "bookmarks.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-lambda": "^2.18.2",
+    "dotenv": "^8.2.0",
+    "faunadb": "^4.0.0",
     "graphql": "^14.1.1"
   }
 }
