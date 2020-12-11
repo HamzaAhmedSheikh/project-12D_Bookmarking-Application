@@ -12,6 +12,6 @@ export default function Home() {
   const {loading, error, data } = useQuery(BookMarksQuery);
 
   return (
-    <p> { JSON.stringify(data) } </p>
+    <p> {JSON.stringify(data)} </p>
   ) 
 }
