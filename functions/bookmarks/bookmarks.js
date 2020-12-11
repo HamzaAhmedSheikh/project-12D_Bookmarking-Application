@@ -28,8 +28,27 @@ const authors = [
 
 const resolvers = {
   Query: {
-    bookmark: (root, args, context) => {
-      return authors
+    bookmark: async (root, args, context) => {
+      try {
+        var client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
+        var result = await client.query(
+          q.Map(
+            q.Paginate(q.Match(q.Index("url"))),
+            q.Lambda(x => q.Get(x))
+          )
+        )        
+        return result.data.map(d => {
+          return {
+            id: d.ts,
+            url: d.data.url,
+            desc: d.data.desc,
+          }
+        })
+      }      
+      catch(error) {
+        console.log('error ===> ', error);
+      } 
+      
     },
   },
 

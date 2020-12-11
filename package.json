@@ -17,6 +17,8 @@
   "license": "0BSD",
   "dependencies": {
     "@apollo/client": "^3.3.5",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.26.1",
     "react": "^16.13.1",

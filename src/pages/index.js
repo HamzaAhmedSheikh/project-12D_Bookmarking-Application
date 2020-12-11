@@ -1,13 +1,15 @@
 import React from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import gql from "graphql-tag";
-
-
-
+import { Grid } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
+import "./style.css";
 
 const BookMarksQuery = gql`{
   bookmark {
+    id
     url
+    desc
   }
 }`;
 
@@ -29,7 +31,8 @@ export default function Home() {
       variables: {
         url: textfield.value,
         desc: desc.value
-      }
+      },
+      refetchQueries: [{query:BookMarksQuery}],
     })
     console.log('textfield ===>', textfield.value);
     console.log('Description  ===>', desc.value);
@@ -42,7 +45,27 @@ export default function Home() {
         <input type="text" placeholder="Description " ref={node => desc=node}/>
         <button onClick={addBookmarkSubmit}> Add Bookmrk </button>
       </div>
-      <p> { JSON.stringify(data) } </p> 
+      {/* <p> { JSON.stringify(data) } </p>  */}
+
+      <h2 className="book"> Bookmark List </h2>
+      <div className="data-container">
+        <Grid className="card-container">
+        {data && data.bookmark.map((d) => 
+          <Grid  key={d.id}>
+            <div className="dataList">
+              <div className="listBtn">
+                <h3> {d.title} </h3>
+                <Delete className="deletebtn" />
+              </div> 
+
+              <div>
+                <a href={d.url} className="title"> {d.url} </a>
+              </div>                      
+            </div>
+          </Grid>
+        )} 
+        </Grid> 
+      </div>
     </div>
   ) 
 }
