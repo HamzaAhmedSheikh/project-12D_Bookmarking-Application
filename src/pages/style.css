@@ -1,9 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+.head {
+    margin-top: 35px;
+    text-align: center;
+    margin-bottom: -20px;
+}
+
+.head h2 {
+    letter-spacing: 1px;
+    font-size: 40px;
+    font-weight: 500;
+    text-transform: uppercase;   
+    font-family: 'Roboto Slab', serif;
+}
+
+.input-main {
+    display: flex;
+    justify-content: center;
+}
+
+.input-div {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: auto;
+}
+
+.input-div input {
+    background-color: transparent;
+    border: 1px solid;
+    outline: none;
+    font-size: 16px;
+    margin-top: 5px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+.input-div button {
+    height: 40px;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    border: 2px solid;
+    width: 100%;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.input-div button:hover {
+    background-color: rgb(35, 83, 98);
+    color: white;
+}
 
 .bookmark-list {
     margin-left: 30px;
-    color: rgb(160, 48, 160);
+    color: rgb(255, 0, 40);    
 }
 
 .data-container {
@@ -20,7 +76,8 @@
 }
 
 .dataList {
-    background-color:rgb(52, 102, 119);
+    /* background-color:rgb(52, 102, 119); */
+    background-color: wheat;
     margin: 5px;
     text-align: start;
     padding: 5px;
@@ -33,23 +90,23 @@
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    color: white;
+    color: green;
 }
 
 .deletebtn {
     cursor: pointer;
-    color: red;
+    color: gray;
 }
 
 .deletebtn:hover {
-    color: white;
+    color: red;
 }
 
 .title {
-    color: blanchedalmond;
+    color: blue;
     font-family: 'Source Code Pro', monospace;
 }
 
 .title:hover {
-    color: rgb(87, 255, 160);
+    color: rgb(1, 49, 22);    
 }

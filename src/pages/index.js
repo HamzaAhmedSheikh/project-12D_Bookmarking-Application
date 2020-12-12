@@ -6,6 +6,8 @@ import { Grid } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import "./style.css";
 
+
+
 const BookMarksQuery = gql`{
   bookmark {
     id
@@ -26,7 +28,7 @@ export default function Home() {
   const {loading, error, data } = useQuery(BookMarksQuery);
   const [addBookmark] = useMutation(AddBookMarkMutation);
   let textfield, desc;
-
+  
   // const addBookmarkSubmit = () => {
   //   addBookmark({
   //     variables: {
@@ -40,11 +42,11 @@ export default function Home() {
   // }
 
   return (
-    <div> 
-      <div>
-        {/* <input type='text' placeholder="Enter bookmark URL" ref={node => textfield=node} />
-        <input type="text" placeholder="Description " ref={node => desc=node}/>
-        <button onClick={addBookmarkSubmit}> Add Bookmrk </button> */}
+    <div>       
+      <div>   
+        <div className="head">
+          <h2>Bookmarking App</h2>
+        </div>  
 
        <Formik
          onSubmit={(value, actions) => {
@@ -97,12 +99,12 @@ export default function Home() {
           <Grid  key={d.id}>
             <div className="dataList">
               <div className="listBtn">
-                <h3 style={{color: "white"}}> {d.desc} </h3>
+                <h3> {d.desc} </h3>
                 <Delete className="deletebtn" />
               </div> 
 
               <div>
-                <a href={d.url} className="title" target="_blank"> {d.url} </a>
+                <a href={d.url} className="title" target="_blank"> view my bookmark site. </a>
               </div>                      
             </div>
           </Grid>
