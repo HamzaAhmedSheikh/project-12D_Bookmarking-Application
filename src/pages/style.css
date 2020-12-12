@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Source+Code+Pro&display=swap');
+
 .bookmark-list {
     margin-left: 30px;
     color: rgb(160, 48, 160);
@@ -45,7 +47,7 @@
 
 .title {
     color: blanchedalmond;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Source Code Pro', monospace;
 }
 
 .title:hover {
