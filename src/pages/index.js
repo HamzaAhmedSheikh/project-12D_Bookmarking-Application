@@ -47,19 +47,19 @@ export default function Home() {
       </div>
       {/* <p> { JSON.stringify(data) } </p>  */}
 
-      <h2 className="book"> Bookmark List </h2>
+      <h2 className="bookmark-list"> Bookmark List </h2>
       <div className="data-container">
         <Grid className="card-container">
         {data && data.bookmark.map((d) => 
           <Grid  key={d.id}>
             <div className="dataList">
               <div className="listBtn">
-                <h3> {d.title} </h3>
+                <h3 style={{color: "white"}}> {d.desc} </h3>
                 <Delete className="deletebtn" />
               </div> 
 
               <div>
-                <a href={d.url} className="title"> {d.url} </a>
+                <a href={d.url} className="title" target="_blank"> {d.url} </a>
               </div>                      
             </div>
           </Grid>

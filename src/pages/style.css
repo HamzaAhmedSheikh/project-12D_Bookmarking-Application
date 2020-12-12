@@ -1,4 +1,53 @@
-.book {
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+.bookmark-list {
     margin-left: 30px;
     color: rgb(160, 48, 160);
+}
+
+.data-container {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    border-radius: 10px;
+    box-sizing: border-box;    
+}
+
+.card-container {
+    justify-content: center;
+    align-content: center;    
+}
+
+.dataList {
+    background-color:rgb(52, 102, 119);
+    margin: 5px;
+    text-align: start;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;   
+}
+
+.listBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.deletebtn {
+    cursor: pointer;
+    color: red;
+}
+
+.deletebtn:hover {
+    color: white;
+}
+
+.title {
+    color: blanchedalmond;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.title:hover {
+    color: rgb(87, 255, 160);
 }
