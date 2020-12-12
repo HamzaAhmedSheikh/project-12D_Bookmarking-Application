@@ -8,15 +8,14 @@ const typeDefs = gql`
   type Query {
     bookmark: [Bookmark!]
   }
-
   type Bookmark {
     id: ID!
     url: String!
     desc: String!
   }
-
   type Mutation {
     addBookmark(url: String!, desc: String!) : Bookmark
+    removeBookmark(id: ID!): Bookmark
   }
 `
 
@@ -74,6 +73,21 @@ const resolvers = {
       catch (error) {
         console.log('Error: ');
         console.log(error);
+      }
+    },
+
+    removeBookmark: async (_, { id }) => {        
+        console.log(id)
+      try {
+        var client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET });
+        var result = await client.query(
+          q.Delete(q.Ref(q.Collection('links'), id))
+        );
+          return result.ref.data
+      } 
+
+      catch (error) {
+          console.log('Error: ', error);        
       }
     }
   }
