@@ -24,53 +24,13 @@ const AddBookMarkMutation = gql`
   }
 `;
 
-const REMOVE_BOOKMARK = gql`
-  mutation removeBookmark($id: ID!) {
-    removeBookmark(id: $id) {
-      id
-    }
-  }
-`;
-
 
 export default function Home() {
   // const [title, setTitle] = useState("");
   // const [siteUrl, setSiteURl] = useState("");
   const { loading, error, data } = useQuery(BookMarksQuery);
   const [addBookmark] = useMutation(AddBookMarkMutation);
-  const [removeBookmark] = useMutation(REMOVE_BOOKMARK);
   let textfield, desc;
- 
-
-  // const removeBookmarkSubmit = (id) => {
-  //   console.log(id);
-  //   removeBookmark({
-  //     variables: {
-  //       id: id,
-  //     },
-  //       refetchQueries: [{ query: BookMarksQuery }],
-  //   });
-  // };
-
-  // const handleSubmit = (e) => {   
-  //   e.preventDefault();
-  //   addBookmark({
-  //     variables: {
-  //       url: siteUrl,
-  //       desc: title,
-  //     },
-  //       refetchQueries: [{ query: BookMarksQuery }]
-  //   })
-  // };
-
-  const remove = (id) => {
-    removeBookmark({
-      variables: {
-        id: id,
-      },
-        refetchQueries: [{ query: BookMarksQuery }],
-    });
-  };
 
 
   return (
@@ -132,11 +92,11 @@ export default function Home() {
               <div className="dataList">
                 <div className="listBtn">
                   <h3> {d.desc} </h3>
-                  <Delete className="deletebtn" onClick={() => remove(d.id)} />
+                  <Delete className="deletebtn" />
                 </div>
 
                 <div>
-                  <a href={d.url} className="title" target="_blank" rel="noreferrer"> view my bookmark.  </a>
+                 <a href={d.url} className="title" target="_blank" rel="noreferrer"> view my bookmark.  </a>
                 </div>
               </div>
             </Grid>
