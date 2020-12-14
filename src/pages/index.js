@@ -25,36 +25,35 @@ const AddBookMarkMutation = gql`
 `;
 
 const deleteBookmark = gql`
-  mutation delBookmark($id: ID!) {
-    delBookmark(id: $id) {
-      url
-      desc
+  mutation deleteTask($id: ID!) {
+    deleteTask(id: $id) {
+      id
     }
   }
-`
+`;
+
 
 
 export default function Home() {
   // const [title, setTitle] = useState("");
   // const [siteUrl, setSiteURl] = useState("");
   const { loading, error, data } = useQuery(BookMarksQuery);
-  const [addBookmark] = useMutation(AddBookMarkMutation);
-  const [delBook] = useMutation(deleteBookmark)
+  const [addBookmark] = useMutation(AddBookMarkMutation); 
+  const [deleteTask] = useMutation(deleteBookmark);
   let textfield, desc;
 
-  const handleDelete = event => {
-    console.log(event.currentTarget);
-    delBook({
+  const handleDelete = (id) => {
+    console.log(JSON.stringify(id))
+    
+    deleteTask({
       variables: {
-        id: event.currentTarget.value,
+        id: id,
       },
-      refetchQueries: [{ query: BookMarksQuery }],
-    })
-  }
-  if (error) {
-    return <h4>error</h4>
-  }
+      refetchQueries: [{ query:BookMarksQuery }],
+    });
+  };
 
+  
 
   return (
     <div>
@@ -115,7 +114,7 @@ export default function Home() {
               <div className="dataList">
                 <div className="listBtn">
                   <h3> {d.desc} </h3>
-                  <Delete className="deletebtn" onClick={handleDelete} value={d.id}/>
+                  <Delete className="deletebtn" onClick={() => handleDelete(d.id)} />
                 </div>
 
                 <div>

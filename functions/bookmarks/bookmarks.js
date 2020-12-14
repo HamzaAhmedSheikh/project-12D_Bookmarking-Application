@@ -15,7 +15,7 @@ const typeDefs = gql`
   }
   type Mutation {
     addBookmark(url: String!, desc: String!) : Bookmark   
-    delBookmark(id: ID!): Bookmark
+    deleteTask(id: ID!): Bookmark
   }
 `
 
@@ -63,8 +63,9 @@ const resolvers = {
         );
         console.log(result.ref.id);
         console.log(result.ts);
+        console.log(result.ref.data);
         console.log("Document Created and Inserted in Container: " + result.ref.id);
-        return result.ref.data;        
+        return result.data;        
       }      
 
       catch (error) {
@@ -73,12 +74,15 @@ const resolvers = {
       }
     },    
 
-    delBookmark: async(_, { id }) => {
+    deleteTask: async (_, { id }) => {
+      console.log(id);
       try {
         var client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
         var result = await client.query(
           q.Delete(q.Ref(q.Collection("links"), id))
         )
+       
+        console.log('result ===>', result.ref.id);
         return result.data
       } catch(error) {
         return error
