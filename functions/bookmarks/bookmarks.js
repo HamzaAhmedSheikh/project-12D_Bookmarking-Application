@@ -15,14 +15,10 @@ const typeDefs = gql`
   }
   type Mutation {
     addBookmark(url: String!, desc: String!) : Bookmark   
+    delBookmark(id: ID!): Bookmark
   }
 `
 
-const authors = [
-  { id: 1, url: 'https://github.com/panacloud-modern-global-apps/jamstack-serverless', desc: 'This is a repo of jamstack-serverless' },
-  { id: 2, url: 'https://github.com/panacloud-modern-global-apps/full-stack-serverless-cdk', desc: 'This is a repo of fullstack-serverless-cdk' },
-  { id: 3, url: 'https://github.com/HamzaAhmedSheikh/project-12D_Bookmarking-Application', desc: 'This is a repo of Bookmarking-Application' },
-]
 
 const resolvers = {
   Query: {
@@ -37,7 +33,7 @@ const resolvers = {
         )        
         return result.data.map(d => {
           return {
-            id: d.ts,
+            id: d.ref.id,
             url: d.data.url,
             desc: d.data.desc,
           }
@@ -65,6 +61,8 @@ const resolvers = {
            },
           )
         );
+        console.log(result.ref.id);
+        console.log(result.ts);
         console.log("Document Created and Inserted in Container: " + result.ref.id);
         return result.ref.data;        
       }      
@@ -74,7 +72,19 @@ const resolvers = {
         console.log(error);
       }
     },    
-  }
+
+    delBookmark: async(_, { id }) => {
+      try {
+        var client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
+        var result = await client.query(
+          q.Delete(q.Ref(q.Collection("links"), id))
+        )
+        return result.data
+      } catch(error) {
+        return error
+      }
+    },
+  },
 }
 
 const server = new ApolloServer({
